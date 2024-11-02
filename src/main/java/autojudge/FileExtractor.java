@@ -32,6 +32,9 @@ public class FileExtractor
                         }
                     }
                 }
+                else{
+                    filePath.mkdirs();
+                }
 
                 zipIn.closeEntry();
                 entry = zipIn.getNextEntry();
