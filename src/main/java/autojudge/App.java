@@ -1,13 +1,12 @@
 package autojudge;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class App {
 
-    public static void main(String[] args) throws ClassNotFoundException, IOException {
+    public static void main(String[] args) {
 
         // Step 1: Extract the ZIP file
         String zipFilePath = "/mnt/c/Users/Keith/documents/oop2_project/816032626.zip"; // Replace with the actual path
@@ -27,12 +26,12 @@ public class App {
         // Example setup for ChatBot class - Add specific method tests using TestMethod subclasses
         ClassSpec chatBotSpec = new ClassSpec(
             Arrays.asList(
-                new MethodSpec("getChatBotName", String.class, List.of(), 1, "getChatBotName failed.", new TestMethod() {
+                new MethodSpec("getChatBotNames", String[].class, List.of(), 1, "getChatBotName failed.", new TestMethod() {
                     @Override
                     public boolean test(Object instance, Object... params) {
                         try {
-                            String name = (String) instance.getClass().getMethod("getChatBotName").invoke(instance);
-                            return name != null && !name.isEmpty();
+                            String[] name = (String[]) instance.getClass().getMethod("getChatBotNames").invoke(instance);
+                            return name != null ;
                         } catch (Exception e) {
                             e.printStackTrace();
                             return false;

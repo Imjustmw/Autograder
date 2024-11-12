@@ -10,10 +10,6 @@ import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.tools.JavaCompiler;
-
-import com.kohlschutter.jdk.standaloneutil.ToolProvider;
-
 public class CriteriaChecker {
 
     private ClassSpec classSpec;
@@ -28,7 +24,7 @@ public class CriteriaChecker {
         return all_test_passed;
     }
 
-    public EvaluationResult evaluateClass(File javaFile) throws ClassNotFoundException, IOException {
+    public EvaluationResult evaluateClass(File javaFile) {
         EvaluationResult result = new EvaluationResult(javaFile.getName(), classSpec.getTotalMarks());
 
         // Load the Java class
@@ -163,37 +159,38 @@ public class CriteriaChecker {
         return true;
     }
 
-    public static Class<?> loadClass(File file) throws ClassNotFoundException, IOException {
+    public static Class<?> loadClass(File file) {
 
         // Check if the file exists and is a .java file
-        if (!file.exists() ) {
-            throw new IllegalArgumentException("The file does not exist or is not a .java file.");
+        if (!file.exists() || !file.getAbsolutePath().endsWith(".java")) {
+            System.out.println("The file does not exist or is not a .java file.");
+            return null;
         }
 
-        // Get the Java compiler
-        JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
-        if (compiler == null) {
-            throw new IllegalStateException("Java compiler not available. Make sure JDK is installed.");
+        // Compile the Java file using an external javac command
+        ProcessBuilder processBuilder = new ProcessBuilder("javac", file.getAbsolutePath());
+        try {
+            Process process = processBuilder.start();
+            int exitCode = process.waitFor();
+            if (exitCode != 0) {
+                System.out.println("Compilation failed. Check the source file for errors.");
+                return null;
+            }
+        } catch (IOException | InterruptedException e) {
+            System.out.println("Compilation was interrupted or failed due to an I/O error.");
+            return null;
         }
-
-        // Compile the Java file
-        int compilationResult = compiler.run(null, null, null, file.getAbsolutePath());
-        if (compilationResult != 0) {
-            throw new IllegalStateException("Compilation failed. Check for errors in the source file.");
-        }
-
-        // Get the class name (file name without the .java extension)
-        String className = file.getName().replace(".java", "");
 
         // Load the compiled class
+        String className = file.getName().replace(".java", "");
         File parentDir = file.getParentFile();
-        URL[] urls = { parentDir.toURI().toURL() };
-        try (URLClassLoader classLoader = new URLClassLoader(urls)) {
+        try (URLClassLoader classLoader = new URLClassLoader(new URL[] { parentDir.toURI().toURL() })) {
             return classLoader.loadClass(className);
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Failed to load the compiled class.");
+            return null;
         }
     }
-
-  
 
     private List<Class<?>> getParameterTypes(List<String> argumentNames) throws ClassNotFoundException {
         List<Class<?>> paramTypes = new ArrayList<>();
