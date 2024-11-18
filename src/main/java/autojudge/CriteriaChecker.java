@@ -67,7 +67,6 @@ public class CriteriaChecker {
         return result;
     }
     
-
     private void checkField(Class<?> cls, VariableSpec variableSpec, EvaluationResult result) {
         try {
             // Check if field with the specified name exists
