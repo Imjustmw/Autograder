@@ -5,16 +5,18 @@ public class VariableSpec {
     private String variableType;
     private String comment;
     private int score;
+    private boolean isConstant;
 
-    public VariableSpec(String variableName,String variableType, String comment, int score) {
+    public VariableSpec(String variableName,String variableType, String comment, int score, boolean isConstant) {
         this.variableName = variableName;
         this.comment = comment;
         this.score =score; 
         this.variableType = variableType;
+        this.isConstant = isConstant;
     }
 
     public VariableSpec(String variableName, String variableType) {
-        this(variableName, variableType,"",0);
+        this(variableName, variableType,"",0,false);
     }
 
     public String getVariableType()
@@ -33,6 +35,10 @@ public class VariableSpec {
 
     public int GetScore(){
         return score;
+    }
+
+    public boolean getIsConstant(){
+        return isConstant;
     }
 }
 

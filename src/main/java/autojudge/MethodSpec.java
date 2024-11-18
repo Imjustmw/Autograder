@@ -4,14 +4,14 @@ import java.util.List;
 
 public class MethodSpec {
     private String methodName;
-    private Class<?> returnType;
-    private List<Class<?>> arguments;
+    private String returnType;
+    private List<String> arguments;
     private int implementationMarks;
     private String failedMessage;
     private TestMethod testImplementation;
+    
 
-    public MethodSpec(String methodName, Class<?> returnType, List<Class<?>> arguments, int totalMarks,
-            String failedMessage, TestMethod testImplementation) {
+    public MethodSpec(String methodName, String returnType, List<String> arguments, int totalMarks, String failedMessage, TestMethod testImplementation) {
         this.methodName = methodName;
         this.returnType = returnType;
         this.arguments = arguments;
@@ -25,11 +25,11 @@ public class MethodSpec {
         return methodName;
     }
 
-    public Class<?> getReturnType() {
+    public String getReturnType() {
         return returnType;
     }
 
-    public List<Class<?>> getArguments() {
+    public List<String> getArguments() {
         return arguments;
     }
 

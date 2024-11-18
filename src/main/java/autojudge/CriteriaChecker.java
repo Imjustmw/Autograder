@@ -5,9 +5,9 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.ArrayList;
 import java.util.List;
 
 public class CriteriaChecker {
@@ -24,49 +24,82 @@ public class CriteriaChecker {
         return all_test_passed;
     }
 
-    public EvaluationResult evaluateClass(File javaFile) {
-        EvaluationResult result = new EvaluationResult(javaFile.getName(), classSpec.getTotalMarks());
-
-        // Load the Java class
-        Class<?> cls = loadClass(javaFile);
-        if (cls == null) {
-            result.addComment("Class " + javaFile.getName() + " could not be loaded.");
-            return result;
+    public EvaluationResult evaluateClass(File classFile) {
+        EvaluationResult result = new EvaluationResult(classFile.getName(), classSpec.getTotalMarks());
+    
+        try {
+            // Ensure the file is a .class file
+            if (!classFile.getName().endsWith(".class")) {
+                result.addComment("File " + classFile.getName() + " is not a valid .class file.");
+                return result;
+            }
+    
+            // Load the compiled class dynamically
+            String className = classFile.getName().replace(".class", "");
+            File parentDir = classFile.getParentFile();
+    
+            try (URLClassLoader classLoader = new URLClassLoader(new URL[]{parentDir.toURI().toURL()})) {
+                Class<?> cls = classLoader.loadClass(className);
+    
+                // Check against the ClassSpec
+                // Check fields
+                for (VariableSpec variableSpec : classSpec.getVariableSpecs()) {
+                    checkField(cls, variableSpec, result);
+                }
+    
+                // Check methods
+                for (MethodSpec methodSpec : classSpec.getMethodSpecs()) {
+                    checkMethod(cls, methodSpec, result);
+                }
+    
+                // Check constructors
+                List<ConstructorSpec> constructorSpecs = classSpec.getConstructorSpecs();
+                if (constructorSpecs != null) {
+                    checkConstructor(cls, constructorSpecs, result);
+                }
+            } catch (ClassNotFoundException e) {
+                result.addComment("Class " + className + " could not be loaded: " + e.getMessage());
+            }
+        } catch (IOException e) {
+            result.addComment("Error accessing class file " + classFile.getName() + ": " + e.getMessage());
         }
-
-        // Check against each ClassSpec
-        // Check fields
-        for (VariableSpec variableSpec : classSpec.getVariableSpecs()) {
-            checkField(cls, variableSpec, result);
-        }
-
-        // Check methods
-        for (MethodSpec methodSpec : classSpec.getMethodSpecs()) {
-            checkMethod(cls, methodSpec, result);
-        }
-
-        // Check constructor
-        List<ConstructorSpec> constructorSpec = classSpec.getConstructorSpecs();
-        if (constructorSpec != null) {
-            checkConstructor(cls, constructorSpec, result);
-        }
-
+    
         return result;
     }
+    
 
     private void checkField(Class<?> cls, VariableSpec variableSpec, EvaluationResult result) {
         try {
             // Check if field with the specified name exists
             Field field = cls.getDeclaredField(variableSpec.getVariableName());
-
+    
             // Get the expected type of the field
-            Class<?> expectedType = mapToClass(variableSpec.getVariableType());
+            String expectedType = variableSpec.getVariableType();
+    
+            if (parameterMatch(expectedType, field.getType())) {
+                // Check if the field is a constant (static and final)
+                int modifiers = field.getModifiers();
+                boolean isConstant = Modifier.isStatic(modifiers) && Modifier.isFinal(modifiers);
+    
+                if (variableSpec.getIsConstant()) {
+                    // Field exists, types match, and it is a constant
+                    if(isConstant){
 
-            if (field.getType().equals(expectedType)) {
-                // Field exists and types match
-                result.addComment("Field " + variableSpec.getVariableName() + " with type "
+                        result.addComment("Constant field " + variableSpec.getVariableName() + " with type "
                         + variableSpec.getVariableType() + " found.");
-                result.incrementScore(variableSpec.GetScore());
+                        result.incrementScore(variableSpec.GetScore() - 1);
+                    }
+                    else{
+                        result.addComment("Field " + variableSpec.getVariableName() + " with type "
+                            + variableSpec.getVariableType() + " found, but it is not a constant.");
+                            result.incrementScore(variableSpec.GetScore());
+                    }
+                } else {
+                    // Field exists, types match, but it is not a constant
+                    result.addComment("Field " + variableSpec.getVariableName() + " with type "
+                            + variableSpec.getVariableType() );
+                            result.incrementScore(variableSpec.GetScore());
+                }
             } else {
                 // Field exists but type does not match
                 result.addComment("Field " + variableSpec.getVariableName() + " found, but type mismatch. Expected: "
@@ -75,19 +108,14 @@ public class CriteriaChecker {
         } catch (NoSuchFieldException e) {
             // Field does not exist
             result.addComment("Field " + variableSpec.getVariableName() + " not found.");
-        } catch (ClassNotFoundException e) {
-            // Error in type mapping
-            result.addComment(
-                    "Error in determining type for field " + variableSpec.getVariableName() + ": " + e.getMessage());
         }
     }
-
     private void checkMethod(Class<?> cls, MethodSpec methodSpec, EvaluationResult result) {
         boolean methodFound = false;
 
         for (Method method : cls.getDeclaredMethods()) {
             if (method.getName().equals(methodSpec.getMethodName()) &&
-                    method.getReturnType().equals(methodSpec.getReturnType()) &&
+                    parameterMatch(methodSpec.getReturnType(),method.getReturnType() ) &&
                     parametersMatch(methodSpec.getArguments(), method.getParameterTypes())) {
 
                 methodFound = true;
@@ -120,111 +148,74 @@ public class CriteriaChecker {
     private void checkConstructor(Class<?> cls, List<ConstructorSpec> constructorSpecs, EvaluationResult result) {
         for (ConstructorSpec constructorSpec : constructorSpecs) {
             try {
-                List<Class<?>> expectedParams = getParameterTypes(constructorSpec.getArgumentTypes());
-                Constructor<?>[] constructors = cls.getConstructors();
-
+                // Get the expected parameter types from the ConstructorSpec
+                List<String> expectedParams = constructorSpec.getArgumentTypes();
+                Constructor<?>[] constructors = cls.getDeclaredConstructors();
+    
                 boolean constructorFound = false;
+    
                 for (Constructor<?> constructor : constructors) {
+                    // Get the actual parameter types for the current constructor
                     Class<?>[] actualParams = constructor.getParameterTypes();
+    
+                    // Check if the parameters match
                     if (parametersMatch(expectedParams, actualParams)) {
                         constructorFound = true;
-                        result.addComment("Constructor " + constructorSpec.getConstructorSpec() + " with parameters "
-                                + expectedParams + " found.");
+    
+                        // Add a success comment and increment score
+                        result.addComment("Constructor " + constructorSpec.getConstructorSpec() +
+                                " with parameters " + expectedParams + " found.");
                         result.incrementScore(constructorSpec.getScore());
                         break;
                     }
                 }
-
+    
+                // If no matching constructor was found, log a comment
                 if (!constructorFound) {
-                    result.addComment("Constructor " + constructorSpec.getConstructorSpec() + " with parameters "
-                            + expectedParams + " not found.");
+                    result.addComment("Constructor " + constructorSpec.getConstructorSpec() +
+                            " with parameters " + expectedParams + " not found.");
                 }
-
+    
             } catch (Exception e) {
-                result.addComment(
-                        "Error checking constructor " + constructorSpec.getConstructorSpec() + ": " + e.getMessage());
+                // Handle any exceptions during the constructor check
+                result.addComment("Error checking constructor " + constructorSpec.getConstructorSpec() +
+                        ": " + e.getClass().getSimpleName() + " - " + e.getMessage());
             }
         }
     }
+    
 
-    private boolean parametersMatch(List<Class<?>> expectedParams, Class<?>[] actualParams) {
+    private boolean parametersMatch(List<String> expectedParams, Class<?>[] actualParams) {
         if (expectedParams.size() != actualParams.length) {
             return false;
         }
-        for (int i = 0; i < expectedParams.size(); i++) {
-            if (!expectedParams.get(i).equals(actualParams[i])) {
+    
+        for (int i = 0; i < actualParams.length; i++) {
+            // Compare the simple names of the parameter types
+            if (!actualParams[i].getSimpleName().equals(expectedParams.get(i))) {
                 return false;
             }
         }
+    
         return true;
     }
 
-    public static Class<?> loadClass(File file) {
-
-        // Check if the file exists and is a .java file
-        if (!file.exists() || !file.getAbsolutePath().endsWith(".java")) {
-            System.out.println("The file does not exist or is not a .java file.");
-            return null;
+    private boolean parameterMatch(String expectedParam, Class<?> actualParam) {
+        if (actualParam == null || expectedParam == null) {
+            return false;
         }
-
-        // Compile the Java file using an external javac command
-        ProcessBuilder processBuilder = new ProcessBuilder("javac", file.getAbsolutePath());
-        try {
-            Process process = processBuilder.start();
-            int exitCode = process.waitFor();
-            if (exitCode != 0) {
-                System.out.println("Compilation failed. Check the source file for errors.");
-                return null;
-            }
-        } catch (IOException | InterruptedException e) {
-            System.out.println("Compilation was interrupted or failed due to an I/O error.");
-            return null;
-        }
-
-        // Load the compiled class
-        String className = file.getName().replace(".java", "");
-        File parentDir = file.getParentFile();
-        try (URLClassLoader classLoader = new URLClassLoader(new URL[] { parentDir.toURI().toURL() })) {
-            return classLoader.loadClass(className);
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("Failed to load the compiled class.");
-            return null;
-        }
+    
+        // Compare the simple names of the parameter types
+        return actualParam.getSimpleName().equals(expectedParam);
     }
+    
+    
 
-    private List<Class<?>> getParameterTypes(List<String> argumentNames) throws ClassNotFoundException {
-        List<Class<?>> paramTypes = new ArrayList<>();
-        for (String name : argumentNames) {
-            paramTypes.add(mapToClass(name));
-        }
-        return paramTypes;
-    }
+    
+    
 
-    private Class<?> mapToClass(String name) throws ClassNotFoundException {
-        switch (name.trim().toLowerCase()) {
-            case "int":
-                return int.class;
-            case "double":
-                return double.class;
-            case "float":
-                return float.class;
-            case "boolean":
-                return boolean.class;
-            case "char":
-                return char.class;
-            case "byte":
-                return byte.class;
-            case "short":
-                return short.class;
-            case "long":
-                return long.class;
-            case "String":
-                return String.class;
-            // Add other common types as needed
-            default:
-                // For fully qualified class names, use Class.forName
-                return Class.forName(name);
-        }
-    }
+   
+
+  
 
 }

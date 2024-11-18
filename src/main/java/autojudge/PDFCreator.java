@@ -1,8 +1,8 @@
 package autojudge;
 
 import com.itextpdf.kernel.colors.ColorConstants;
-import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Text;
@@ -80,6 +80,7 @@ public class PDFCreator {
 
     public boolean Compile()
     {
+        System.out.println("We have done it");
         if(!isCreated)
             return false;
         try {
