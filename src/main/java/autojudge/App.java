@@ -4,6 +4,7 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class App {
 
@@ -11,6 +12,11 @@ public class App {
         String zipFiles = "/mnt/c/Users/Keith/documents/oop2_project/Zips";
         String outputFile = "/mnt/c/Users/Keith/documents/oop2_project/assignments";
        
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter zip files location: ");
+        zipFiles = scanner.nextLine();
+        System.out.print("Enter extraction destination:  ");
+        outputFile= scanner.nextLine();
 
 
         List<MethodSpec> methodSpecs = new ArrayList<>();
