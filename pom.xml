@@ -6,8 +6,8 @@
 
   <groupId>autograder</groupId>
   <artifactId>autograder</artifactId>
-  <version>1.0-SNAPSHOT</version>
-
+  <version>21</version>
+<!--1.0-SNAPSHOT-->
   <name>autograder</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>

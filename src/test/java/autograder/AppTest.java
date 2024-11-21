@@ -1,18 +1,13 @@
 package autograder;
 
-import static org.junit.Assert.*;
-
-import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
-import com.itextpdf.text.pdf.PdfReader;
-import com.itextpdf.text.pdf.parser.PdfTextExtractor;
-
 import autograder.models.TestResult;
-import autograder.utils.*;
+import autograder.utils.FileExtractor;
+import autograder.utils.PDFGenerator;
 
 /**
  * Unit test for simple App.
@@ -34,15 +29,20 @@ public class AppTest
 
     @Test
     public void testPDFGenerator(){
-        boolean value = PDFGenerator.generatePDF("src\\\\main\\\\java\\\\autograder\\\\resources", "Header", "Content", null);
+        boolean value = PDFGenerator.generatePDF("src/main/java/autograder/resources", "Header", "Content", List.of());
         assertEquals("This method should return true if  pdf was generated", true,value);
     }
    
     @Test
     public void  testFileCompiler(){
-        boolean value = FileCompiler.compileJavaFiles("src\\main\\java\\autograder\\resources\\Matthew_Roodal_816024135_A1.zip");
+        boolean value = false;
+        try{
+            value = FileExtractor.extractZip("src/main/java/autograder/resources/Matthew_Roodal_816024135_A1.zip","src/main/java/autograder/resources/");
+        }
+        catch(Exception e){
+            System.out.println("Error executing File extractor");
+        }
         assertEquals("This method should return true if  file was extracted", true,value);
     }
-
 }
 

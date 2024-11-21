@@ -8,7 +8,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public class FileExtractor {
-    public static void extractZip(String zipFilePath, String targetDirectory) throws Exception {
+    public static boolean extractZip(String zipFilePath, String targetDirectory) throws Exception {
         File targetDir = new File(targetDirectory);
         if (!targetDir.exists()) {
             targetDir.mkdirs(); // Create target directory if it doesn't exist
@@ -37,5 +37,6 @@ public class FileExtractor {
                 zis.closeEntry();
             }
         }
+        return true;
     }
 }
