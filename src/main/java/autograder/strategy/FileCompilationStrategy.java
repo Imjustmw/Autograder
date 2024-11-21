@@ -8,13 +8,13 @@ import autograder.utils.FileCompiler;
 public class FileCompilationStrategy implements GradingStrategy {
     
     @Override
-    public Object execute(Object input1, Object input2) throws Exception {
-        if (!(input1 instanceof List)) {
+    public Object execute(Object studentList, Object input2) throws Exception {
+        if (!(studentList instanceof List)) {
             throw new IllegalArgumentException("Input must be a List of Students");
         }
 
         @SuppressWarnings("unchecked")
-        List<Student> students = (List<Student>) input1;
+        List<Student> students = (List<Student>) studentList;
 
         for (Student student: students) {
             System.out.println("Compiling files for: " + student.getStudentID());

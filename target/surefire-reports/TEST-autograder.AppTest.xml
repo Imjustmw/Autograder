@@ -1,65 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="autograder.AppTest" time="0.046" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="autograder.AppTest" time="0.073" tests="2" errors="1" skipped="0" failures="0">
   <properties>
-    <property name="sun.desktop" value="windows"/>
-    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
-    <property name="file.encoding.pkg" value="sun.io"/>
-    <property name="java.specification.version" value="1.8"/>
+    <property name="java.specification.version" value="23"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="C:\Users\jonny\Downloads\OOP-Project\autograder\target\test-classes;C:\Users\jonny\Downloads\OOP-Project\autograder\target\classes;C:\Users\jonny\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\jonny\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\jonny\.m2\repository\com\itextpdf\itextpdf\5.5.13.3\itextpdf-5.5.13.3.jar;"/>
-    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.class.path" value="c:\Users\dj_si\Desktop\oop autograder proj rere\Autograder\target\test-classes;c:\Users\dj_si\Desktop\oop autograder proj rere\Autograder\target\classes;C:\Users\dj_si\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\dj_si\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\dj_si\.m2\repository\com\itextpdf\itextpdf\5.5.13.3\itextpdf-5.5.13.3.jar;"/>
+    <property name="java.vm.vendor" value="Eclipse Adoptium"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
-    <property name="java.vendor.url" value="http://java.oracle.com/"/>
-    <property name="user.timezone" value="America/La_Paz"/>
-    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="java.vendor.url" value="https://adoptium.net/"/>
+    <property name="user.timezone" value="America/Caracas"/>
     <property name="os.name" value="Windows 11"/>
-    <property name="user.country" value="TT"/>
+    <property name="java.vm.specification.version" value="23"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-1.8\jre\bin"/>
-    <property name="sun.java.command" value="C:\Users\jonny\AppData\Local\Temp\surefire7092051620538201663\surefirebooter4469831793328247019.jar C:\Users\jonny\AppData\Local\Temp\surefire7092051620538201663 2024-11-20T23-56-54_704-jvmRun1 surefire7545417678353377976tmp surefire_09013445000995339067tmp"/>
-    <property name="surefire.test.class.path" value="C:\Users\jonny\Downloads\OOP-Project\autograder\target\test-classes;C:\Users\jonny\Downloads\OOP-Project\autograder\target\classes;C:\Users\jonny\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\jonny\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\jonny\.m2\repository\com\itextpdf\itextpdf\5.5.13.3\itextpdf-5.5.13.3.jar;"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="C:\Users\dj_si\AppData\Roaming\Code\User\globalStorage\pleiades.java-extension-pack-jdk\java\latest\bin"/>
+    <property name="sun.java.command" value="C:\Users\dj_si\AppData\Local\Temp\surefire893723456375236532\surefirebooter13278151331791412312.jar C:\Users\dj_si\AppData\Local\Temp\surefire893723456375236532 2024-11-21T18-17-49_578-jvmRun1 surefire5372240693054682409tmp surefire_015586892660326236754tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="c:\Users\dj_si\Desktop\oop autograder proj rere\Autograder\target\test-classes;c:\Users\dj_si\Desktop\oop autograder proj rere\Autograder\target\classes;C:\Users\dj_si\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\dj_si\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\dj_si\.m2\repository\com\itextpdf\itextpdf\5.5.13.3\itextpdf-5.5.13.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
-    <property name="user.home" value="C:\Users\jonny"/>
+    <property name="user.home" value="C:\Users\dj_si"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="java.home" value="C:\Program Files\Java\jdk-1.8\jre"/>
-    <property name="basedir" value="C:\Users\jonny\Downloads\OOP-Project\autograder"/>
+    <property name="java.version.date" value="2024-10-15"/>
+    <property name="java.home" value="C:\Users\dj_si\AppData\Roaming\Code\User\globalStorage\pleiades.java-extension-pack-jdk\java\latest"/>
     <property name="file.separator" value="\"/>
+    <property name="basedir" value="c:\Users\dj_si\Desktop\oop autograder proj rere\Autograder"/>
+    <property name="java.vm.compressedOopsMode" value="32-bit"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="C:\Users\jonny\AppData\Local\Temp\surefire7092051620538201663\surefirebooter4469831793328247019.jar"/>
-    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk-1.8\jre\lib\resources.jar;C:\Program Files\Java\jdk-1.8\jre\lib\rt.jar;C:\Program Files\Java\jdk-1.8\jre\lib\jsse.jar;C:\Program Files\Java\jdk-1.8\jre\lib\jce.jar;C:\Program Files\Java\jdk-1.8\jre\lib\charsets.jar;C:\Program Files\Java\jdk-1.8\jre\lib\jfr.jar;C:\Program Files\Java\jdk-1.8\jre\classes"/>
+    <property name="surefire.real.class.path" value="C:\Users\dj_si\AppData\Local\Temp\surefire893723456375236532\surefirebooter13278151331791412312.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="java.runtime.version" value="1.8.0_431-b10"/>
-    <property name="user.name" value="jonny"/>
+    <property name="java.runtime.version" value="23.0.1+11"/>
+    <property name="user.name" value="dj_si"/>
+    <property name="stdout.encoding" value="UTF-8"/>
     <property name="path.separator" value=";"/>
     <property name="os.version" value="10.0"/>
-    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk-1.8\jre\lib\endorsed"/>
-    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
-    <property name="file.encoding" value="Cp1252"/>
-    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
-    <property name="localRepository" value="C:\Users\jonny\.m2\repository"/>
-    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
-    <property name="java.io.tmpdir" value="C:\Users\jonny\AppData\Local\Temp\"/>
-    <property name="java.version" value="1.8.0_431"/>
-    <property name="user.dir" value="C:\Users\jonny\Downloads\OOP-Project\autograder"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="Temurin-23.0.1+11"/>
+    <property name="localRepository" value="C:\Users\dj_si\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
+    <property name="java.io.tmpdir" value="C:\Users\dj_si\AppData\Local\Temp\"/>
+    <property name="java.version" value="23.0.1"/>
+    <property name="user.dir" value="c:\Users\dj_si\Desktop\oop autograder proj rere\Autograder"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
     <property name="sun.os.patch.level" value=""/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk-1.8\jre\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\oracle_19c\bin;C:\Users\jonny\Downloads\JAVA\WINDOWS.X64_193000_db_home\bin;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;C:\Program Files\Java\jdk1.8.0_202\bin;C:\Users\jonny\AppData\Local\Programs\Python\Python39;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.9\bin;C:\Program Files\Java\jdk-1.8\bin;C:\Users\jonny\AppData\Local\Programs\Python\Python312\Scripts\;C:\Users\jonny\AppData\Local\Programs\Python\Python312\;C:\Users\jonny\AppData\Local\Programs\Python\Launcher\;C:\Users\jonny\AppData\Local\Microsoft\WindowsApps;C:\Users\jonny\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\jonny\AppData\Roaming\npm;C:\Swift\bin;;."/>
-    <property name="java.vm.info" value="mixed mode"/>
-    <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="java.vm.version" value="25.431-b10"/>
-    <property name="java.specification.maintenance.version" value="6"/>
-    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk-1.8\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Users\dj_si\AppData\Roaming\Code\User\globalStorage\pleiades.java-extension-pack-jdk\java\latest\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Users\dj_si\AppData\Roaming\Code\User\globalStorage\pleiades.java-extension-pack-jdk\gradle\latest\bin;C:\Users\dj_si\AppData\Roaming\Code\User\globalStorage\pleiades.java-extension-pack-jdk\maven\latest\bin;C:\Users\dj_si\AppData\Roaming\Code\User\globalStorage\pleiades.java-extension-pack-jdk\java\latest\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Users\dj_si\AppData\Local\Programs\Python\Python312\Scripts\;C:\Users\dj_si\AppData\Local\Programs\Python\Python312\;C:\Users\dj_si\AppData\Local\Microsoft\WindowsApps;C:\Users\dj_si\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\dj_si\AppData\Local\Programs\Git\cmd;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="UTF-8"/>
+    <property name="java.vendor" value="Eclipse Adoptium"/>
+    <property name="java.vm.version" value="23.0.1+11"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-    <property name="java.class.version" value="52.0"/>
+    <property name="java.class.version" value="67.0"/>
   </properties>
-  <testcase name="testTestResult" classname="autograder.AppTest" time="0.005"/>
+  <testcase name="testFileCompiler" classname="autograder.AppTest" time="0.014">
+    <error message="Cannot read the array length because the return value of &quot;java.io.File.listFiles()&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot read the array length because the return value of "java.io.File.listFiles()" is null
+	at autograder.AppTest.testFileCompiler(AppTest.java:43)
+</error>
+  </testcase>
+  <testcase name="testTestResult" classname="autograder.AppTest" time="0"/>
 </testsuite>

@@ -1,20 +1,20 @@
-C:\Users\jonny\Downloads\OOP-Project\autograder\src\main\java\autograder\strategy\GradingStrategy.java
-C:\Users\jonny\Downloads\OOP-Project\autograder\src\main\java\autograder\GradingContext.java
-C:\Users\jonny\Downloads\OOP-Project\autograder\src\main\java\autograder\utils\FileExtractor.java
-C:\Users\jonny\Downloads\OOP-Project\autograder\src\main\java\autograder\models\ClassTest.java
-C:\Users\jonny\Downloads\OOP-Project\autograder\src\main\java\autograder\strategy\FileExtractionStrategy.java
-C:\Users\jonny\Downloads\OOP-Project\autograder\src\main\java\autograder\assignments\assignment1\ChatBotPlatformTest.java
-C:\Users\jonny\Downloads\OOP-Project\autograder\src\main\java\autograder\assignments\assignment1\ChatBotSimulationTest.java
-C:\Users\jonny\Downloads\OOP-Project\autograder\src\main\java\autograder\assignments\assignment1\ChatBotGeneratorTest.java
-C:\Users\jonny\Downloads\OOP-Project\autograder\src\main\java\autograder\AssignmentTest.java
-C:\Users\jonny\Downloads\OOP-Project\autograder\src\main\java\autograder\App.java
-C:\Users\jonny\Downloads\OOP-Project\autograder\src\main\java\autograder\strategy\TestExecutionStrategy.java
-C:\Users\jonny\Downloads\OOP-Project\autograder\src\main\java\autograder\assignments\assignment1\ChatBotTest.java
-C:\Users\jonny\Downloads\OOP-Project\autograder\src\main\java\autograder\utils\ClassLoader.java
-C:\Users\jonny\Downloads\OOP-Project\autograder\src\main\java\autograder\models\Student.java
-C:\Users\jonny\Downloads\OOP-Project\autograder\src\main\java\autograder\assignments\Assignment1Test.java
-C:\Users\jonny\Downloads\OOP-Project\autograder\src\main\java\autograder\utils\FileCompiler.java
-C:\Users\jonny\Downloads\OOP-Project\autograder\src\main\java\autograder\utils\PDFGenerator.java
-C:\Users\jonny\Downloads\OOP-Project\autograder\src\main\java\autograder\strategy\FileCompilationStrategy.java
-C:\Users\jonny\Downloads\OOP-Project\autograder\src\main\java\autograder\AssignmentTestFactory.java
-C:\Users\jonny\Downloads\OOP-Project\autograder\src\main\java\autograder\models\TestResult.java
+c:\Users\dj_si\Desktop\oop autograder proj rere\Autograder\src\main\java\autograder\models\Student.java
+c:\Users\dj_si\Desktop\oop autograder proj rere\Autograder\src\main\java\autograder\utils\FileExtractor.java
+c:\Users\dj_si\Desktop\oop autograder proj rere\Autograder\src\main\java\autograder\utils\PDFGenerator.java
+c:\Users\dj_si\Desktop\oop autograder proj rere\Autograder\src\main\java\autograder\models\ClassTest.java
+c:\Users\dj_si\Desktop\oop autograder proj rere\Autograder\src\main\java\autograder\assignments\assignment1\ChatBotSimulationTest.java
+c:\Users\dj_si\Desktop\oop autograder proj rere\Autograder\src\main\java\autograder\strategy\FileExtractionStrategy.java
+c:\Users\dj_si\Desktop\oop autograder proj rere\Autograder\src\main\java\autograder\GradingContext.java
+c:\Users\dj_si\Desktop\oop autograder proj rere\Autograder\src\main\java\autograder\assignments\assignment1\ChatBotTest.java
+c:\Users\dj_si\Desktop\oop autograder proj rere\Autograder\src\main\java\autograder\assignments\assignment1\ChatBotGeneratorTest.java
+c:\Users\dj_si\Desktop\oop autograder proj rere\Autograder\src\main\java\autograder\AssignmentTest.java
+c:\Users\dj_si\Desktop\oop autograder proj rere\Autograder\src\main\java\autograder\App.java
+c:\Users\dj_si\Desktop\oop autograder proj rere\Autograder\src\main\java\autograder\strategy\FileCompilationStrategy.java
+c:\Users\dj_si\Desktop\oop autograder proj rere\Autograder\src\main\java\autograder\strategy\TestExecutionStrategy.java
+c:\Users\dj_si\Desktop\oop autograder proj rere\Autograder\src\main\java\autograder\assignments\Assignment1Test.java
+c:\Users\dj_si\Desktop\oop autograder proj rere\Autograder\src\main\java\autograder\AssignmentTestFactory.java
+c:\Users\dj_si\Desktop\oop autograder proj rere\Autograder\src\main\java\autograder\utils\ClassLoader.java
+c:\Users\dj_si\Desktop\oop autograder proj rere\Autograder\src\main\java\autograder\strategy\GradingStrategy.java
+c:\Users\dj_si\Desktop\oop autograder proj rere\Autograder\src\main\java\autograder\assignments\assignment1\ChatBotPlatformTest.java
+c:\Users\dj_si\Desktop\oop autograder proj rere\Autograder\src\main\java\autograder\models\TestResult.java
+c:\Users\dj_si\Desktop\oop autograder proj rere\Autograder\src\main\java\autograder\utils\FileCompiler.java

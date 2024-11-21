@@ -16,7 +16,7 @@ import java.io.FileOutputStream;
 import java.util.List;
 
 public class PDFGenerator {
-    public static void generatePDF(String filePath, String headerContent, String content, List<TestResult> results) {
+    public static boolean generatePDF(String filePath, String headerContent, String content, List<TestResult> results) {
         try {
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(filePath + "/results.pdf"));
@@ -95,7 +95,8 @@ public class PDFGenerator {
             document.close();
         } catch (Exception e) {
             System.err.println("Error generating PDF: " + e.getMessage());
+            return false;
         }
-        
+        return true;
     }
 }

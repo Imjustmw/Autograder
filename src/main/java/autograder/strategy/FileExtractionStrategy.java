@@ -10,13 +10,13 @@ import autograder.utils.FileExtractor;
 public class FileExtractionStrategy implements GradingStrategy {
 
     @Override
-    public Object execute(Object input1, Object input2) throws Exception {
-        if (!(input1 instanceof String) || !(input2 instanceof String)) {
+    public Object execute(Object source, Object destination) throws Exception {
+        if (!(source instanceof String) || !(destination instanceof String)) {
             throw new IllegalArgumentException("Input must be Strings representing the source and destinations paths.");
-        }
+        }   
 
-        String sourcePath = (String) input1;
-        String destinationPath = (String) input2;
+        String sourcePath = (String) source;
+        String destinationPath = (String) destination;
         File sourceDir = new File(sourcePath);
 
         if (!sourceDir.isDirectory()) {

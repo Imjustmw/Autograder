@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: autograder.AppTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.046 s - in autograder.AppTest
+Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.073 s <<< FAILURE! - in autograder.AppTest
+testFileCompiler(autograder.AppTest)  Time elapsed: 0.014 s  <<< ERROR!
+java.lang.NullPointerException: Cannot read the array length because the return value of "java.io.File.listFiles()" is null
+	at autograder.AppTest.testFileCompiler(AppTest.java:43)
+
